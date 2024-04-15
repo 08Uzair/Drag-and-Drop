@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>DRAG AND DROP</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="Boxes " id="left">
+            <div class="list" draggable="true"><i class='bx bxs-color'></i>ELEMENT NO 1 </div>
+            <div class="list" draggable="true"><i class='bx bxs-color'></i>ELEMENT NO 2 </div>
+            <div class="list" draggable="true"><i class='bx bxs-color'></i>ELEMENT NO 3 </div>
+            <div class="list" draggable="true"><i class='bx bxs-color'></i>ELEMENT NO 4 </div>
+        </div>
+        <div class="Boxes" id="right"></div>
+    </div>
+    <script>
+        let lists = document.getElementsByClassName("list")
+        let rightBox = document.getElementById("right")
+        let leftBox = document.getElementById("left")
+
+        for (list of lists) {
+            list.addEventListener("dragstart", function (e) {
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+                });
+
+                rightBox.addEventListener("drop", function (e) {
+                    rightBox.appendChild(selected);
+                    selected = null;
+                })
+                leftBox.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+                });
+
+                leftBox.addEventListener("drop", function (e) {
+                    leftBox.appendChild(selected);
+                    selected = null;
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
